@@ -14,7 +14,7 @@ html {
 
 a {
   text-decoration: none;
-  color: #779bff;
+  color: #b29546;
 }
 
 .profile-img {
@@ -53,7 +53,7 @@ a {
 }
 
 .social-icon:hover {
-  color: #779bff;
+  color: #b29546;
 }
 
 @media (max-width: 736px) {
