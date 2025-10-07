@@ -1,0 +1,12 @@
+.hugo_build.lock
+.hvm
+
+public/
+resources/
+node_modules/
+.DS_Store
+*.log
+.cache/
+dist/
+tmp/
+.env
