@@ -90,4 +90,4 @@ jobs:
             - name: Test SSH connection
               run: ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }} echo "SSH connection established"
             - name: Deploy with rsync
-              run: rsync -avz --delete ./public/  ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SERVER_WEBROOT }}
+              run: rsync -avz --delete "${{ github.workspace }}/public/" ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SERVER_WEBROOT }}
