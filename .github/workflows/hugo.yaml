@@ -98,7 +98,9 @@ jobs:
                   ssh-private-key: ${{ secrets.SERVER_SSH_KEY }}
             - name: Test SSH connection
               run: ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }} echo "SSH connection established"
+            - name: Confirm contents of working directory
+              run: ls -la .
             - name: Confirm contents of public directory
-              run: ls -la ./public
+              run: ls -la ${{  github.workspace }}/public
             - name: Deploy with rsync
-              run: rsync -avz --delete ./public/ ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SERVER_WEBROOT }}
+              run: rsync -avz --delete ${{  github.workspace }}/public ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SERVER_WEBROOT }}
