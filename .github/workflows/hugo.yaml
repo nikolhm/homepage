@@ -74,7 +74,7 @@ jobs:
             - name: Build the site
               run: hugo --gc --minify --cacheDir "${{ runner.temp }}/hugo_cache"
             - name: Make artifact from public directory
-              uses: actions/upload-artifact@v3
+              uses: actions/upload-artifact@v4
               with:
                   name: public
                   path: ./public
@@ -89,7 +89,7 @@ jobs:
         needs: build
         steps:
             - name: Download artifact
-              uses: actions/download-artifact@v3
+              uses: actions/download-artifact@v5
               with:
                   name: public
             - name: Start SSH Agent and Add Key
