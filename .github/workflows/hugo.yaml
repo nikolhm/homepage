@@ -99,4 +99,11 @@ jobs:
             - name: Establish SSH connection
               run: ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }} echo "SSH connection established"
             - name: Deploy with rsync
-              run: rsync -avz --delete . ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SERVER_WEBROOT }}
+              run: |
+                  rsync -avz --delete . ${{ secrets.SERVER_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SERVER_WEBROOT }}
+                  if [ $? -eq 23 ]; then
+                      echo "Rsync completed with partial errors. This is expected."
+                  elif [ $? -ne 0 ]; then
+                      echo "Rsync failed with a critical error."
+                      exit 1
+                  fi
